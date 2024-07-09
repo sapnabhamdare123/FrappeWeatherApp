@@ -61,11 +61,11 @@ function displayWeather(weatherData, forecastData) {
   const { speed } = wind;
 
   document.getElementById('city-name').textContent = name;
-  document.getElementById('temperature').textContent = ${temp}°C;
+  document.getElementById('temperature').textContent = "${temp}°C";
   document.getElementById('weather-description').textContent = description;
-  document.getElementById('humidity').textContent = Humidity: ${humidity}%;
-  document.getElementById('wind-speed').textContent = Wind Speed: ${speed} m/s;
-  document.querySelector('.fa-cloud').className = fa-solid ${getWeatherIconClass(icon)};
+  document.getElementById('humidity').textContent = "Humidity: ${humidity}%";
+  document.getElementById('wind-speed').textContent = `Wind Speed: ${speed} m/s`;
+  document.querySelector('.fa-cloud').className = `fa-solid ${getWeatherIconClass(icon)}`;
 
   displayForecast(forecastData);
 }
@@ -96,3 +96,17 @@ function getWeatherIconClass(icon) {
 }
 
 // by sapna
+
+
+// Function to display forecast data
+function displayForecast(forecastData) {
+  const forecastItems = document.querySelectorAll('.forecast-item');
+  for (let i = 0; i < 5; i++) {
+    const dayData = forecastData.list[i * 8]; 
+    const dayTempMin = dayData.main.temp_min;
+    const dayTempMax = dayData.main.temp_max;
+    forecastItems[i].innerHTML = <p>Day ${i + 1}: <span>High: ${dayTempMax}°C</span> <span>Low: ${dayTempMin}°C</span></p>;
+  }
+}
+
+//By Vishakha
